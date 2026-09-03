@@ -9,10 +9,6 @@ android {
         ver_release {
             dimension "version"
             manifestPlaceholders = [appName:"MOBILE RUSSIA"]
-            firebaseCrashlytics {
-                nativeSymbolUploadEnabled true
-            }
-
             externalNativeBuild {
                 cmake {
                     cppFlags '-fvisibility=hidden'
@@ -24,10 +20,6 @@ android {
             applicationIdSuffix ".test"
             versionNameSuffix "-test"
             manifestPlaceholders = [appName:"MOBILE RUSSIA TEST"]
-
-            firebaseCrashlytics {
-                nativeSymbolUploadEnabled false
-            }
         }
     }
 
