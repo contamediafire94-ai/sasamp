@@ -69,19 +69,19 @@
 
         <activity
             android:name="com.russia.launcher.ui.activity.SplashActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Splash" />
+        <activity
+            android:name="com.russia.launcher.ui.activity.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Splash">
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.russia.launcher.ui.activity.MainActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name="com.russia.launcher.ui.activity.LoaderActivity"
             android:screenOrientation="portrait"
