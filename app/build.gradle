@@ -1,7 +1,5 @@
 plugins {
     id 'com.android.application'
-    id 'com.google.gms.google-services'
-    id 'com.google.firebase.crashlytics'
     id 'org.jetbrains.kotlin.android'
 }
 
@@ -74,6 +72,7 @@ android {
     packagingOptions {
         jniLibs {
             excludes += ['META-INF/*']
+            pickFirsts += ['**/libbass.so']
         }
         resources {
             excludes += ['META-INF/*']
@@ -141,5 +140,4 @@ dependencies {
     implementation 'androidx.viewpager2:viewpager2:1.1.0'
     implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
     implementation "com.github.skydoves:colorpickerview:2.3.0"
-    apply plugin: 'com.google.gms.google-services'
 }
