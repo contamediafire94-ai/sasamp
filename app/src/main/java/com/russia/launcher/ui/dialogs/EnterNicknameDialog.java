@@ -15,7 +15,6 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.russia.game.R;
 import com.russia.launcher.ui.fragment.SettingsFragment;
 import com.russia.launcher.storage.NativeStorage;
-import com.russia.launcher.utils.Validator;
 
 public class EnterNicknameDialog extends MaterialAlertDialogBuilder implements View.OnClickListener {
 
@@ -80,11 +79,14 @@ public class EnterNicknameDialog extends MaterialAlertDialogBuilder implements V
     }
 
     private void performSaveButtonAction() {
-        String nickname = nicknameInput.getText().toString();
+        String nickname = nicknameInput.getText().toString().trim();
 
-        if (Validator.isValidNickname(nickname, settingsFragment.getActivity())) {
-            NativeStorage.addClientProperty("name", nickname, settingsFragment.getActivity());
-            dialog.dismiss();
+        if (nickname.isEmpty()) {
+            return;
         }
+
+        NativeStorage.addClientProperty("name", nickname, settingsFragment.getActivity());
+        settingsFragment.updateNicknameField(nickname);
+        dialog.dismiss();
     }
 }
