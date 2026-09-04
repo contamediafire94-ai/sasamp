@@ -20,7 +20,6 @@ import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.russia.game.R
 import com.russia.game.gui.hud.HudManager
 import com.russia.launcher.async.task.CacheChecker.isGameCacheValid
@@ -134,10 +133,22 @@ class Samp : GTASA() {
     }
 
     fun exitGame() {
-        FirebaseCrashlytics.getInstance().deleteUnsentReports()
-        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(false)
-        finishAndRemoveTask()
-        System.exit(0)
+        val trace = Log.getStackTraceString(Throwable("exitGame() chamado"))
+
+        Log.e("BetaTester", trace)
+
+        try {
+            val dir = getExternalFilesDir(null)
+            if (dir != null) {
+                File(dir, "exitGame_trace.txt").appendText(trace + "\n\n")
+            }
+        } catch (e: Exception) {
+            Log.e("BetaTester", "Erro ao salvar exitGame_trace", e)
+        }
+
+        // TESTE: nao fechar o aplicativo.
+        // finishAndRemoveTask()
+        // System.exit(0)
     }
 
     fun goVibrate(milliseconds: Int) {
